@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Minesweeper {
 
@@ -19,29 +19,39 @@ public class Minesweeper {
                 break;
             }
 
-            System.out.println("\n\nEnter row");
-            int row = scan.nextInt();
-            System.out.println("Enter column");
-            int col = scan.nextInt();
+            try {
+                System.out.println("\n\nEnter row(<" + size + ")");
+                int row = scan.nextInt();
+                System.out.println("Enter column(<" + size + ")");
+                int col = scan.nextInt();
 
-            if (row > size) {
-                System.out.println("Invalid Row Entry!! Cannot be greater than" + size);
-                continue;
-            }
+                if (board.isOpen(row, col)) {
+                    System.out.println("Selected position is already open");
+                    continue;
+                }
 
-            if (col > size) {
-                System.out.println("Invalid Column Entry!! Cannot be greater than" + size);
-                continue;
-            }
+                if (row > size) {
+                    System.out.println("Invalid Row Entry!! Cannot be greater than" + size);
+                    continue;
+                }
 
-            if (board.isMine(row, col)) {
-                System.out.println("You Lost!!!");
-                board.printBoard(true);
+                if (col > size) {
+                    System.out.println("Invalid Column Entry!! Cannot be greater than" + size);
+                    continue;
+                }
+
+                if (board.isMine(row, col)) {
+                    System.out.println("You Lost!!!");
+                    board.printBoard(true);
+                    break;
+                }
+
+                board.updateCell(row - 1, col - 1);
+                board.printBoard(false);
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Input");
                 break;
             }
-
-            board.updateCell(row - 1, col - 1);
-            board.printBoard(false);
         }
     }
 

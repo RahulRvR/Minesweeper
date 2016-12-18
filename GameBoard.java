@@ -1,5 +1,9 @@
 import java.util.Random;
 
+/**
+ * This class replicates the Minesweeper board. Handles initialization, cell updates and
+ * game decision.
+ */
 public class GameBoard {
 
     private static char UNTOUCHED_CELL = '◼';
@@ -131,6 +135,13 @@ public class GameBoard {
      **/
     public boolean isMine(final int row, final int column) {
         return mines[row - 1][column - 1] == 1;
+    }
+
+    /**
+     * Checks if the specified position is open.
+     **/
+    public boolean isOpen(final int row, final int column) {
+        return grid[row - 1][column - 1] == OPENED_CELL;
     }
 
     /**
