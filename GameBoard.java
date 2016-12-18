@@ -10,6 +10,9 @@ public class GameBoard {
     private static char OPENED_CELL = '.';
     private static char MINE_CELL = 'M';
 
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
+
     char[][] grid;
     int[][] mines;
 
@@ -62,7 +65,15 @@ public class GameBoard {
      */
     public void printBoard(boolean showMines) {
         System.out.println("\n");
+        System.out.print("\t");
         for (int i = 0; i < gridSize; i++) {
+            int col = i+1;
+            System.out.print(ANSI_RED + col + "\t" + ANSI_RESET);
+        }
+        System.out.println("");
+        for (int i = 0; i < gridSize; i++) {
+            int row = i+1;
+            System.out.print(ANSI_RED + row + "\t" + ANSI_RESET);
             for (int j = 0; j < gridSize; j++) {
                 if (showMines && mines[i][j] == 1) {
                     System.out.print(MINE_CELL + "\t");
