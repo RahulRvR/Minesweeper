@@ -108,9 +108,11 @@ public class GameBoard {
         grid[row][column] = OPENED_CELL;
 
         updateCell(row - 1, column);
+        updateCell(row - 1, column - 1);
         updateCell(row, column - 1);
         updateCell(row + 1, column);
         updateCell(row, column + 1);
+        updateCell(row + 1, column + 1);
     }
 
     /**
